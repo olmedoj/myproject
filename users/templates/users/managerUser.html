@@ -1,0 +1,94 @@
+{% extends "./base.html" %}
+
+{% block title %} Users Manager {% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+        <h2>Manager Users</h2>
+        <div class="card">
+             <div class="card-body">
+                <form action="/users/adduser/" method="POST">{% csrf_token %}
+                     <div class="form-group">
+                         <input type="number" id="txtcod" name="txtcod" class="form-control" 
+                          placeholder="Cod" minlength="1" maxlength="6">
+                     </div>
+                     <div class="form-group">
+                        <input type="text" id="txtname" name="txtname" class="form-control" 
+                        placeholder="name" maxlength="45" required>
+                     </div>
+                     <div class="form-group">
+                        <input type="text" id="txtlastname" name="txtlastname" class="form-control" 
+                        placeholder="lastname" maxlength="45" required>
+                     </div>
+                     <div class="form-group">
+                           <input type="text" id="txtemail" name="txtemail" class="form-control" 
+                          placeholder="Email" maxlength="100" required>
+                     </div>
+                     <div class="form-group">
+                          <input type="password" id="txtpassword" name="txtpassword" class="form-control" 
+                          placeholder="Password" maxlength="45" required>
+                     </div>
+                     <div class="form-group">
+                           <input type="text" id="txtaddress" name="txtaddress" class="form-control" 
+                         placeholder="Address" maxlength="200" required>
+                     </div>
+                     <div class="form-group">
+                            <input type="text" id="txtwork" name="txtwork" class="form-control" 
+                            placeholder="Work Place" maxlength="45" required>
+                     </div>    
+                     <div class="form-group">
+                          <input type="text" id="txtsex" name="txtsex" class="form-control" 
+                          placeholder="Sex" maxlength="20" required>
+                     </div>
+                     <div class="form-group" >
+                         <button type="submit" class="btn btn-primary btn-block">Save</button>
+                     </div>
+                </form>
+        </div>
+    </div>
+
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-9">
+        <div class="table-responsive py-2">
+            <h1>User List</h1>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Cod</th>
+                        <th>Name</th>
+                        <th>Lastname</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Address</th>
+                        <th>Work Place</th>
+                        <th>Sexo</th>
+                        <th>Position</th>
+                        <th colspan="2">Options</th>
+
+                    </tr>
+
+                </thead>
+                <tbody>
+                    {% for c in users %}
+                    <tr>
+                        <td>{{c.id}}</td>
+                        <td>{{c.name}}</td>
+                        <td>{{c.lastName}}</td>
+                        <td>{{c.email}}</td>
+                        <td>{{c.password}}</td>
+                        <td>{{c.address}}</td>
+                        <td>{{c.workPlace}}</td>
+                        <td>{{c.sex}}</td>
+                        <td></td>
+                        <td><a href="/users/edituser/{{c.id}}" class="btn btn-info">Edit</a></td>
+                        <td><a href="/users/deleteuser/{{c.id}}" class="btn btn-danger btnDelete">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

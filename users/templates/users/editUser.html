@@ -1,0 +1,50 @@
+{% extends "./base.html" %}
+
+{% block title %} Users Manager {% endblock %}
+
+{% block body %}
+<div class="col-md-4 offset-md-4">
+    <h2>Edit User</h2>
+        <div class="card">
+             <div class="card-body">
+                <form action="/users/editionuser/" method="POST">{% csrf_token %}
+                     <div class="form-group">
+                         <input type="number" id="txtcod" name="txtcod" value="{{users.id}}" class="form-control" 
+                          placeholder="Cod" minlength="1" maxlength="6" readonly required>
+                     </div>
+                     <div class="form-group">
+                        <input type="text" id="txtname" name="txtname" value="{{users.name}}" class="form-control" 
+                        placeholder="name" maxlength="45" required>
+                     </div>
+                     <div class="form-group">
+                        <input type="text" id="txtlastname" name="txtlastname" value="{{users.lastName}}" class="form-control" 
+                        placeholder="lastname" maxlength="45" required>
+                     </div>
+                     <div class="form-group">
+                           <input type="text" id="txtemail" name="txtemail" value="{{users.email}}" class="form-control" 
+                          placeholder="Email" maxlength="100" required>
+                     </div>
+                     <div class="form-group">
+                          <input type="password" id="txtpassword" name="txtpassword" value="{{users.password}}" class="form-control" 
+                          placeholder="Password" maxlength="45" required>
+                     </div>
+                     <div class="form-group">
+                           <input type="text" id="txtaddress" name="txtaddress" value="{{users.address}}" class="form-control" 
+                         placeholder="Address" maxlength="200" required>
+                     </div>
+                     <div class="form-group">
+                            <input type="text" id="txtwork" name="txtwork" value="{{users.workPlace}}" class="form-control" 
+                            placeholder="Work Place" maxlength="45" required>
+                     </div>    
+                     <div class="form-group">
+                          <input type="text" id="txtsex" name="txtsex" value="{{users.sex}}" class="form-control" 
+                          placeholder="Sex" maxlength="20" required>
+                     </div>
+                     <div class="form-group" >
+                         <button type="submit" class="btn btn-primary btn-block">Save</button>
+                     </div>
+                </form>
+        </div>
+
+</div>
+{% endblock %}
